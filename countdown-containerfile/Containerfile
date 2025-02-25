@@ -1,0 +1,11 @@
+FROM alpine
+
+VOLUME /mydata
+WORKDIR /mydata
+
+COPY countdown /mydata/countdown
+RUN chmod +x /mydata/countdown  # Ensure it’s executable
+
+ENTRYPOINT ["/mydata/countdown"]
+CMD ["1"]
+

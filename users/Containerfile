@@ -1,0 +1,5 @@
+# Run it without adding user at first coment the RUN and USER commands
+FROM registry.access.redhat.com/ubi9/ubi
+RUN useradd sleeper
+USER sleeper
+CMD ["sleep","3600"]

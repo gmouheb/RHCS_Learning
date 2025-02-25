@@ -1,0 +1,6 @@
+FROM ubi9/ubi
+ARG arguser
+ENV user=${arguser}
+RUN mkdir /test &&\
+    touch /test/${user}
+CMD ls -l /test/

@@ -1,0 +1,10 @@
+FROM  ubi9/ubi
+
+COPY countdown  .
+RUN dnf install bash -y &&\
+    dnf clean all -y
+
+ENTRYPOINT ["./countdown"]
+#this CMD ["wil take the argument provided to the container when executing the podman run "]
+CMD ["1"]
+

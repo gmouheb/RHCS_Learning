@@ -1,0 +1,15 @@
+#Multi stage container file AS builder identifies that this is an builder image
+FROM busybox AS builder
+
+#/appfiles is temp working dir
+WORKDIR /appfiles
+ 
+RUN sh -c "echo 'echo hello world' > hellofile" && \
+    chmod +x hellofile
+
+FROM alpine 
+RUN apk add nmap
+WORKDIR /root
+COPY --from=builder /appfiles/hellofile ./
+#array notation evrey element between "" and separated by , make interpretation easier
+CMD ["sh", "-c", "./hellofile"] 
