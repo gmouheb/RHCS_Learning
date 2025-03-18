@@ -1,0 +1,22 @@
+services:
+  frontend:
+    container_name: "frontend"
+    image: docker.io/bitnami/nginx
+    ports:
+      - "8008:8080"
+    networks: 
+      - datanet
+    volumes: 
+      - datavol:/data
+  backend:
+    container_name: "backend_db" 
+    image: docker.io/bitnami/mariadb
+    networks:
+      -  datanet
+    environment:
+      MARIADB_ROOT_PASSWORD:  password
+
+networks:
+  datanet: {}
+volumes: 
+  datavol: {}
