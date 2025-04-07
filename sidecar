@@ -1,0 +1,23 @@
+## a simple bash script for a sidecar container that update index.html content
+
+#cat > html/time.sh << _EOL
+#chmod +x html/time.sh
+#mkdir html
+#podman pod create -p 8080:8080 --name mypod --volume ./html/:/var/www/html:z 
+#podman network ls
+#podman create --pod mypod --name myapp quay.io/mouheb_gh/mgregistry:latest 
+#cat > html/time.sh << _EOL
+#!/bin/bash
+ data() {
+   echo "<html><h1>"; date;echo "Hello World </h1></html>"
+ sleep 1 
+ }
+ while true; do 
+   data > index.html
+ done
+#_EOL
+#chmod +x html/time.sh
+#podman create --pod mypod --name time --workdir /var/www/html ubi9 ./time.sh 
+#podman pod  start mypod 
+
+
